@@ -1,73 +1,96 @@
 <template>
-    <div>
-        <v-col
-            class="mt-5"
-            cols="12"
-        >
-            <h3 class="mb-4">
+    <v-form>
+        <v-container class="ml-3">
+            <!-- Precio -->
+            <v-row class="my-3 ml-2">
                 Precio por
-            </h3>
-            <v-row>
-                <!-- Price -->
-                <v-text-field
-                    label="Precio por Kg"
-                    type="tel"
-                    outlined
-                    cols="3"
-                >
-                </v-text-field>
+            </v-row>
+            <v-row class="my-3 ml-4">
                 <!-- Unit -->
-                <v-select
-                    label="Unidad"
-                    :items="units"
-                    v-model="selectedUnit"
-                    item-text="name"
-                    outlined
-                ></v-select>
-            </v-row>
-
-            <v-divider
-                class="mb-6"
-            ></v-divider>
-
-            <h3 class="mb-4">
-                Respuesta
-            </h3>
-            <v-row>
-
-                
-
-                <!-- Target Unit -->
-                <v-select
-                    label="Unidad Objetivo"
-                    :items="units"
-                    v-model="selectedTargetUnit"
-                    item-text="name"
-                    outlined
-                ></v-select>
-                <!-- Price -->
-                <v-text-field
-                    label="Precio Objetivo"
-                    type="tel"
-                    outlined
-                    readonly
+                <v-col
+                    cols="12"
+                    md="3"
                 >
-                </v-text-field>
+                    <v-select
+                        label="Unidad"
+                        :items="units"
+                        v-model="selectedUnit"
+                        item-text="text"
+                        outlined
+                    ></v-select>
+                </v-col>
+
+                <!-- Price -->
+                <v-col
+                    cols="12"
+                    md="3"
+                >
+                    <v-text-field
+                        label="Precio por Kg"
+                        type="tel"
+                        outlined
+                        cols="3"
+                        v-model="pricePerUnit"
+                    >
+                    </v-text-field>
+                </v-col>
             </v-row>
-        </v-col>
-    </div>
+
+            <!-- Consulta -->
+            <v-row class="my-3 ml-2">
+                Consulta
+            </v-row>
+            <v-row class="my-3 ml-4">
+                <!-- Price -->
+                <v-col
+                    cols="12"
+                    md="3"
+                >
+                    <v-text-field
+                        label="Cantidad"
+                        type="tel"
+                        outlined
+                        cols="3"
+                        v-model="quantity"
+                    >
+                    </v-text-field>
+                </v-col>
+
+                <!-- Unit -->
+                <v-col
+                    cols="12"
+                    md="3"
+                >
+                    <v-select
+                        label="Unidad"
+                        :items="quantityUnits"
+                        v-model="selectedQuantityUnit"
+                        item-text="text"
+                        outlined
+                    ></v-select>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-form>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            price: null,
-            selectedUnit: 'Kilogramo (g)',
-            selectedTargetUnit: 'Kilogramo (g)',
+            /// Precio
+            selectedUnit: {},
             units: [
-                'Kilogramo (Kg)',
-                'Gramo (g)'
+                { text: 'Kilogramo (Kg)' },
+                { text: 'Gramo (g)' }
+            ],
+            pricePerUnit: null,
+            // Consulta
+            quantity: null,
+            selectedQuantityUnit: null,
+            quantityUnits: [
+                { text: 'Kilogramo (Kg)' },
+                { text: 'Gramo (g)' }
             ],
         }
     },
